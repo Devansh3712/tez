@@ -60,10 +60,11 @@ std::vector<std::string> Tokenizer::sentences() {
     std::vector<std::string> result;
     std::string currentSentence;
     for (long long int i = 0; i < content.size(); i++) {
-        if (content[i] != '.' && content[i] != '?' && content[i] != '!')
+        if (content[i] != '.' && content[i] != '?' && content[i] != '!' && content[i] != '\n')
             currentSentence += content[i];
         else {
-            result.push_back(currentSentence);
+            if (currentSentence.size())
+                result.push_back(currentSentence);
             currentSentence = "";
         }
     }

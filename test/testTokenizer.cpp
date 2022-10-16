@@ -1,5 +1,4 @@
 #include <cassert>
-#include <iostream>
 #include "../src/tokenizer.hpp"
 
 int main() {
@@ -9,7 +8,7 @@ int main() {
     s = t.sentences();
     p = t.paragraphs();
     assert(w.size() == 404);
-    assert(s.size() == 54);
+    assert(s.size() == 53);
     assert(p.size() == 5);
     return 0;
 }
