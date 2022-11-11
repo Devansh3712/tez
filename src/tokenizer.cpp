@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
-#include "tokenizer.hpp"
+#include "../include/tokenizer.hpp"
 
 /**
  * Reads the content of the input file and stores in a string

@@ -1,5 +1,6 @@
 #include <cassert>
-#include "../src/tokenizer.hpp"
+#include <iostream>
+#include "../include/tokenizer.hpp"
 
 int main() {
     Tokenizer t("./test/lorem.txt");
