@@ -48,23 +48,18 @@ bool Trie::isLastNode(TrieNode *node) {
 
 /**
  * Recursive function to store suggested words in a vector of strings for
- * a given node.
+ * a given node. The vector is passed by reference.
  */
-void Trie::wordSuggestions(TrieNode *root, std::string prefix, std::vector<std::string> *words) {
-    if (root->isEndChar)
+void Trie::wordSuggestions(TrieNode *node, std::string prefix, std::vector<std::string> *words) {
+    if (node->isEndChar)
         words->push_back(prefix);
     for (int i = 0; i < 26; i++)
-        if (root->child[i]) {
+        if (node->child[i]) {
             char newPrefix = 'a' + i;
-            wordSuggestions(root->child[i], prefix + newPrefix, words);
+            wordSuggestions(node->child[i], prefix + newPrefix, words);
         }
 }
 
-/**
- * Stores and returns similar suggested words.
- * 
- * @return Vector of similar words.
- */
 std::vector<std::string> Trie::similarWords(std::string word) {
     std::vector<std::string> words;
     TrieNode *temp = root;

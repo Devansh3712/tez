@@ -1,4 +1,4 @@
-test: test_tokenizer test_analyzer test_trie
+test: test_tokenizer test_analyzer test_trie test_hash_table
 
 run:
 	g++ -o main main.cpp src/*.cpp
@@ -15,3 +15,7 @@ test_analyzer:
 test_trie:
 	g++ -o trie test/testTrie.cpp src/*.cpp
 	./trie
+
+test_hash_table:
+	g++ -o hashTable test/testHashTable.cpp src/*.cpp
+	./hashTable
