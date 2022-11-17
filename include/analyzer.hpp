@@ -1,4 +1,7 @@
+#include <utility>
+#include "hashTable.hpp"
 #include "tokenizer.hpp"
+
 #ifndef ANALYZER_HPP
 #define ANALYZER_HPP
 
@@ -11,12 +14,15 @@
 class Analyzer {
 private:
     std::vector<std::string> words, sentences, paragraphs;
+    HashTable dict;
 public:
     Analyzer(Tokenizer t);
     long long int characterCount();
     long long int wordCount();
     long long int sentenceCount();
     long long int paragraphCount();
+    std::pair<std::vector<std::string>, long int> mostCommonWords();
+    std::pair<std::vector<std::string>, long int> leastCommonWords();
 };
 
 #endif
