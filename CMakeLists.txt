@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.24)
 project(tez
         VERSION 1.0.0
         DESCRIPTION "Quantitative Text Analyzer")
