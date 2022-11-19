@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "../include/sentiment.hpp"
 
 /**
