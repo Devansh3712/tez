@@ -56,7 +56,7 @@ long long int Analyzer::paragraphCount() {
 
 std::pair<std::vector<std::string>, long int> Analyzer::mostCommonWords() {
     std::vector<std::string> result;
-    long int maxCount = 0;
+    long int maxCount = 1;
     for (HashTableNode *node: dict.items())
         if (node->getCount() > maxCount)
             maxCount = node->getCount();
@@ -76,4 +76,39 @@ std::pair<std::vector<std::string>, long int> Analyzer::leastCommonWords() {
         if (node->getCount() == minCount)
             result.push_back(node->getKey());
     return std::make_pair(result, minCount);
+}
+
+/**
+ * Implementation of levenshtein distance, which is the minimum number of edits needed to
+ * transform one string into the other.
+ * 
+ * @param originalWord Word to compare to.
+ * @param suggestedWord Word to be compared.
+ * @return Levenshtein distance between the input words.
+ */
+int edit_distance(std::string originalWord, std::string suggestedWord) {
+    int n = originalWord.size(), m = suggestedWord.size();
+    std::vector<std::vector<int>> distance(n + 1, std::vector<int>(m + 1));
+    distance[0][0] = 0;
+    for(int i = 1; i <= n; ++i)
+        distance[i][0] = i;
+    for(int i = 1; i <= m; ++i)
+        distance[0][i] = i;
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            distance[i][j] = std::min(std::min(distance[i - 1][j] + 1, distance[i][j - 1] + 1),
+                                        distance[i - 1][j - 1] + (originalWord[i - 1] == suggestedWord[j - 1] ? 0 : 1));
+    return distance[n][m];
+}
+
+/**
+ * Find similarity between 2 words. Output is between 0 to 1, where 0 means no similarity
+ * and 1 means the words are same.
+ * 
+ * @param originalWord Word to compare to.
+ * @param suggestedWord Word to be compared.
+ * @return Similarity ratio.
+ */
+float similarity(std::string originalWord, std::string suggestedWord) {
+    return 1 - 1.0 * edit_distance(originalWord, suggestedWord) / std::max(originalWord.size(), suggestedWord.size());
 }

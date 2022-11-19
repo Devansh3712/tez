@@ -1,4 +1,5 @@
 #include <utility>
+
 #include "hashTable.hpp"
 #include "tokenizer.hpp"
 
@@ -24,5 +25,8 @@ public:
     std::pair<std::vector<std::string>, long int> mostCommonWords();
     std::pair<std::vector<std::string>, long int> leastCommonWords();
 };
+
+// Similarity between 2 words using levenshtein distance.
+float similarity(std::string originalWord, std::string suggestedWord);
 
 #endif
